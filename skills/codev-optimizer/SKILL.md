@@ -25,7 +25,7 @@ Use this skill to run CODE V optimization with a physical-first, staged workflow
 
 - For interactive optimization, automatically launch the visible CODE V UI at the start of the task.
 - Prefer opening the target `.len` directly into the visible CODE V session. Do not default to `/input=` startup for GUI work.
-- After the window exists, reuse the same visible CODE V window for later stages. Let each stage script `RES` its source lens internally instead of opening a new GUI window every time.
+- After the window exists, reuse that same visible CODE V window for later stages. Let each stage script `RES` its source lens internally instead of opening a new GUI window every time.
 - If the visible CODE V window has been closed, reopen the target `.len` first, then continue.
 - If the user wants to watch optimization progress cycle by cycle, prefer an interactive CODE V session over `/background`. Do not assume a background `.lis` file will flush per-cycle updates in real time.
 - If the user wants 2D layout visualization during optimization, enable `DRA` as part of the normal optimization run. Treat it as a stage output aid, not as a separate fake visualization mode.
@@ -46,6 +46,7 @@ Use this skill to run CODE V optimization with a physical-first, staged workflow
 - Read [references/material-and-structure.md](references/material-and-structure.md) when geometry stalls and you need to change glass, add non-spherical power, split or merge groups, or consider floating groups.
 - Read [references/diagnostics.md](references/diagnostics.md) when a run misses targets and you need to diagnose whether the blocker is settings, structure, color, pupil, or architecture.
 - Read [references/ui-session.md](references/ui-session.md) when the user wants a visible CODE V session, interactive progress, or stage-by-stage GUI execution.
+- Read [references/stage-templates.md](references/stage-templates.md) when the task needs reusable visible-session `.seq` skeletons for prepare, `AUT`, and finish/export stages.
   - Use that same diagnostics reference to decide whether a stage result becomes the new base, stays only as a diagnostic branch, or must be rolled back.
 
 ## Workspace Conventions
@@ -69,12 +70,19 @@ This skill can be paired with visible CODE V UI automation when the user wants t
   - Thin launcher for the PowerShell bridge when a desktop-session handoff is needed.
 - `scripts/ui_run_current_seq.vbs`
   - Sends a single sequence file into the current visible CODE V window.
+- `scripts/interactive_prepare.template.seq`
+  - Skeleton for a visible-session prepare step: `RES`, refresh vignetting, set variables, save a clean pre-stage lens.
+- `scripts/interactive_cdv_stage.template.seq`
+  - Skeleton for a visible-session `ERR CDV` stage with bounded `AUT`, physical guardrails, and post-stage save/export.
+- `scripts/interactive_finish.template.seq`
+  - Skeleton for a visible-session finish/export step with final vignetting refresh and optional acceptance call.
 
 Usage notes:
 
 - For visible interactive work, first open the target `.len`, then inject later stage scripts into that same window.
 - Do not default to opening a new GUI window for every stage.
 - Let each stage script `RES` its source lens internally.
+- Prefer the bundled interactive stage templates when building small visible-session steps instead of one oversized monolithic script.
 - Treat these scripts as desktop-session bridge examples. They may need path or title adjustments when reused in another workspace.
 
 ## House-Style Defaults To Preserve

@@ -49,6 +49,9 @@ Bundled helper scripts:
 - `scripts/ui_send_codev_command.ps1`
 - `scripts/ui_run_send_codev_command.vbs`
 - `scripts/ui_run_current_seq.vbs`
+- `scripts/interactive_prepare.template.seq`
+- `scripts/interactive_cdv_stage.template.seq`
+- `scripts/interactive_finish.template.seq`
 
 Treat them as bridge examples, not universal productized tooling.
 
@@ -66,6 +69,8 @@ A visible stage script should usually:
 8. export the updated `.seq` if needed
 
 Keep stage scope small enough that the user can understand what changed.
+
+For reusable stage skeletons, read [stage-templates.md](stage-templates.md).
 
 ## 6. What The User Should Be Able To See
 

@@ -1,0 +1,56 @@
+! INTERACTIVE PREPARE TEMPLATE
+! Replace every <...> placeholder before use.
+! Purpose:
+! 1. restore the visible-session source lens
+! 2. refresh true aperture and vignetting
+! 3. set the intended variable state for the next stage
+! 4. save a clean pre-stage lens snapshot
+
+RES "<SOURCE_LEN>"
+
+! Drop and reload custom functions only if this stage needs them.
+! DRO FCT FTGT STOW_LEN
+! IN "<FCT_FTGT_SEQ>"
+! IN "<FCT_STOW_SEQ>"
+
+! Visible-session reminder block.
+"=== PREPARE: <STAGE_NAME> ==="
+"SOURCE: <SOURCE_LEN>"
+"SAVE AS: <PREPARED_LEN>"
+
+SET APE
+SET VIG
+DEL APE SA
+
+FRZ SA
+
+! Preserve real motion variables after FRZ SA.
+! Replace these examples with the real motion model from the lens.
+! THC SI 100
+! ZOO THC S11 100 0 0 0 100
+! ZOO THC S15 100 100 100 100 100
+
+! Open the effective variable set for this stage.
+! Curvature examples:
+! CCY S5 0
+! CCY S6 0
+! CCY S7 0
+! CCY S8 0
+! Thickness examples:
+! THC S5 0
+! THC S6 0
+! THC S7 0
+! THC S8 0
+
+! Optional stage-specific hard physical rules.
+! EFL Z1 = <EFL_TARGET>
+! OAL S1..I-1 Z1 < <OAL_MAX>
+! @STOW_LEN < <STOW_MAX>
+! @FTGT(<S1>,<S2>,1) > <REAL_GAP_MIN>
+
+SET APE
+SET VIG
+DEL APE SA
+
+SAV "<PREPARED_LEN>"
+WRL "<PREPARED_SEQ>"

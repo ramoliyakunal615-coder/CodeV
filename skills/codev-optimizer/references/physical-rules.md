@@ -33,6 +33,8 @@ MAE 0.1
 
 But treat them as adjacent-surface checks only.
 
+`CT/ET` can control air gaps as well as glass thicknesses, but they still act on adjacent thickness definitions. Do not treat them as full substitutes for a real physical clearance across virtual surfaces.
+
 If real surfaces have virtual surfaces between them, `general constraints` and `CT/ET` are not enough to represent the real physical gap. In those cases, control the real gap with `FTGT`.
 
 Use `FCT_FTGT` when:
@@ -41,6 +43,8 @@ Use `FCT_FTGT` when:
 - The real surfaces are non-spherical
 - The gap belongs to a moving group
 - The real physical minimum clearance matters more than local adjacent thickness
+
+If two nearby thickness variables jointly define one real air space, usually open only one of them during optimization. Keep the other fixed or coupled unless the user explicitly wants redundant freedom in that local package definition.
 
 ## 3. Hard-Rule Priority
 

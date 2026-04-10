@@ -1,0 +1,28 @@
+! INTERACTIVE FINISH / EXPORT TEMPLATE
+! Replace every <...> placeholder before use.
+! Purpose:
+! 1. restore the latest stage result
+! 2. refresh true aperture and vignetting one final time
+! 3. export the visible-session result
+! 4. optionally run acceptance checks
+
+RES "<SOURCE_LEN>"
+
+! Optional custom-function reload for rerunnable sessions.
+! DRO FCT FTGT STOW_LEN
+! IN "<FCT_FTGT_SEQ>"
+! IN "<FCT_STOW_SEQ>"
+
+"=== FINISH / EXPORT: <STAGE_NAME> ==="
+"SOURCE: <SOURCE_LEN>"
+"FINAL LEN: <FINAL_LEN>"
+
+SET APE
+SET VIG
+DEL APE SA
+
+SAV "<FINAL_LEN>"
+WRL "<FINAL_SEQ>"
+
+! Optional acceptance script.
+! IN "<CHECK_SEQ>"

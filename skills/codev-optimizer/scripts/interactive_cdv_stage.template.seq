@@ -1,0 +1,62 @@
+! INTERACTIVE CDV STAGE TEMPLATE
+! Replace every <...> placeholder before use.
+! Purpose:
+! 1. restore a prepared stage lens into the visible CODE V session
+! 2. refresh true aperture and vignetting
+! 3. run one bounded AUT stage with ERR CDV
+! 4. save and export the stage result
+
+RES "<SOURCE_LEN>"
+
+! Optional custom-function reload for rerunnable sessions.
+! DRO FCT FTGT STOW_LEN
+! IN "<FCT_FTGT_SEQ>"
+! IN "<FCT_STOW_SEQ>"
+
+"=== AUT STAGE: <STAGE_NAME> ==="
+"SOURCE: <SOURCE_LEN>"
+"RESULT: <RESULT_LEN>"
+
+SET APE
+SET VIG
+DEL APE SA
+
+AUT
+
+! First-order and package guardrails.
+! Keep only the rules that are actually active in this stage.
+! EFL Z1 = <EFL_TARGET>
+! OAL S1..I-1 Z1 < <OAL_MAX>
+! @STOW_LEN < <STOW_MAX>
+! @FTGT(<S1>,<S2>,1) > <REAL_GAP_MIN>
+! DST Z1 F2..F6 > <DST_MIN>
+! DST Z1 F2..F6 < <DST_MAX>
+
+ERR CDV
+WFR NO
+STP YES
+BFG NO
+
+! Stage-length defaults. Tighten or relax as needed.
+MNC <MNC>
+MXC <MXC>
+IMP <IMP>
+
+! Optional stage-specific weights, fields, or colors.
+! WTF ...
+! WTX ...
+! WTY ...
+! WTW ...
+
+! Optional comments for the visible command window.
+"ACTIVE CURVATURES: <LIST>"
+"ACTIVE THICKNESSES: <LIST>"
+
+GO
+
+SET APE
+SET VIG
+DEL APE SA
+
+SAV "<RESULT_LEN>"
+WRL "<RESULT_SEQ>"
