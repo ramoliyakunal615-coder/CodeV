@@ -40,6 +40,7 @@ Use this skill to run CODE V optimization with a physical-first, staged workflow
 ## Read These References As Needed
 
 - Read [references/workflow.md](references/workflow.md) for phase ordering, error-function choice, variable-release order, and result-saving rules.
+- Read [references/system-settings.md](references/system-settings.md) when deciding conjugate type, aperture definition, field definition, field sampling density, and configuration priority.
 - Read [references/variables.md](references/variables.md) when deciding which curvature, thickness, glass, or motion variables are valid, high-efficiency, low-efficiency, coupled, or invalid.
 - Read [references/physical-rules.md](references/physical-rules.md) for vignetting, aperture clipping, air-gap logic, `FTGT`, and stow-length rules.
 - Read [references/material-and-structure.md](references/material-and-structure.md) when geometry stalls and you need to change glass, add non-spherical power, split or merge groups, or consider floating groups.
