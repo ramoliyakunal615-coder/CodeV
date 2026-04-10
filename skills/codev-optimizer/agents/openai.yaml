@@ -1,0 +1,4 @@
+interface:
+  display_name: "CODE V Optimizer"
+  short_description: "Stage CODE V lens optimization with physical-first rules."
+  default_prompt: "Use $codev-optimizer to optimize this CODE V lens with staged constraints and physical-first checks."
