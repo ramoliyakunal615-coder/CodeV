@@ -27,6 +27,8 @@ Use this skill to run CODE V optimization with a physical-first, staged workflow
 - Prefer opening the target `.len` directly into the visible CODE V session. Do not default to `/input=` startup for GUI work.
 - After the window exists, reuse the same visible CODE V window for later stages. Let each stage script `RES` its source lens internally instead of opening a new GUI window every time.
 - If the visible CODE V window has been closed, reopen the target `.len` first, then continue.
+- If the user wants to watch optimization progress cycle by cycle, prefer an interactive CODE V session over `/background`. Do not assume a background `.lis` file will flush per-cycle updates in real time.
+- If the user wants 2D layout visualization during optimization, enable `DRA` as part of the normal optimization run. Treat it as a stage output aid, not as a separate fake visualization mode.
 - Treat physical rules as prerequisites. If performance conflicts with real gaps, air thickness, stow length, or package limits, keep the physical rules and change the structure or glass strategy instead.
 - Add standards gradually. Use a loose target first, then tighten only after the system shows it can carry the new requirement.
 - When a thickness or physical quantity is identical across configurations, constrain it only once.
@@ -48,3 +50,25 @@ Use this skill to run CODE V optimization with a physical-first, staged workflow
 - Keep optimization scripts and acceptance scripts separate.
 - Save new results with timestamps and keep the latest validation log readable.
 - When the user has established house rules, follow them even if CODE V offers looser defaults.
+
+## Bundled UI Helper Scripts
+
+This skill can be paired with visible CODE V UI automation when the user wants to watch optimization progress in the real GUI.
+
+- `scripts/run_example_ui_visible.ps1`
+  - Opens a known-good `.len` directly in a visible CODE V session.
+  - Use this pattern for the first visible launch of a task.
+- `scripts/ui_send_codev_command.ps1`
+  - Sends a command or `IN "...seq"` into the visible CODE V command input box by UI Automation.
+  - Prefer this over raw `SendKeys`.
+- `scripts/ui_run_send_codev_command.vbs`
+  - Thin launcher for the PowerShell bridge when a desktop-session handoff is needed.
+- `scripts/ui_run_current_seq.vbs`
+  - Sends a single sequence file into the current visible CODE V window.
+
+Usage notes:
+
+- For visible interactive work, first open the target `.len`, then inject later stage scripts into that same window.
+- Do not default to opening a new GUI window for every stage.
+- Let each stage script `RES` its source lens internally.
+- Treat these scripts as desktop-session bridge examples. They may need path or title adjustments when reused in another workspace.
