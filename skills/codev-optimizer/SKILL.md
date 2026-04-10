@@ -40,9 +40,11 @@ Use this skill to run CODE V optimization with a physical-first, staged workflow
 ## Read These References As Needed
 
 - Read [references/workflow.md](references/workflow.md) for phase ordering, error-function choice, variable-release order, and result-saving rules.
+- Read [references/variables.md](references/variables.md) when deciding which curvature, thickness, glass, or motion variables are valid, high-efficiency, low-efficiency, coupled, or invalid.
 - Read [references/physical-rules.md](references/physical-rules.md) for vignetting, aperture clipping, air-gap logic, `FTGT`, and stow-length rules.
 - Read [references/material-and-structure.md](references/material-and-structure.md) when geometry stalls and you need to change glass, add non-spherical power, split or merge groups, or consider floating groups.
 - Read [references/diagnostics.md](references/diagnostics.md) when a run misses targets and you need to diagnose whether the blocker is settings, structure, color, pupil, or architecture.
+- Read [references/ui-session.md](references/ui-session.md) when the user wants a visible CODE V session, interactive progress, or stage-by-stage GUI execution.
 
 ## Workspace Conventions
 
@@ -72,3 +74,11 @@ Usage notes:
 - Do not default to opening a new GUI window for every stage.
 - Let each stage script `RES` its source lens internally.
 - Treat these scripts as desktop-session bridge examples. They may need path or title adjustments when reused in another workspace.
+
+## House-Style Defaults To Preserve
+
+- Physical rules win over performance.
+- Add performance targets gradually: basic aberrations, then distortion, then color, and only then `MTF`.
+- Treat all true optical refracting surfaces as valid curvature-variable candidates in principle; separate valid from invalid first, then high-efficiency from low-efficiency.
+- Treat effective-variable all-open as the first-priority branch after invalid variables have been removed.
+- Treat ordinary structural thickness variables, motion variables, pickup followers, and return/closure variables as different classes. Do not mix them casually.
