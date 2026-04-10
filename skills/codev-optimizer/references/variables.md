@@ -119,10 +119,56 @@ Roll back to a tighter branch only if the broader release clearly destabilizes t
 
 Treat glass changes as structure-level variables, not final-polish variables.
 
-Use them when:
+### Valid glass variables
+
+- true transmissive elements whose material choice is still part of the design space
+- elements or groups that still carry real residual color burden
+- cemented pairs or nearby groups where glass pairing is one of the main color-correction tools
+
+### Invalid glass variables
+
+- dummy or helper surfaces
+- air spaces
+- mirrors or non-transmissive placeholder surfaces that are not being redesigned as glass elements
+- user-fixed materials that are constrained by supply, cost, thermal, mold, or patent-matching requirements
+- pickup-style or bookkeeping locations that do not correspond to a real glass assignment
+
+### High-efficiency glass candidates
+
+These usually deserve first attention:
+
+- elements that dominate axial or lateral color residuals
+- elements inside strong achromatizing pairs or cemented color-balance groups
+- elements whose glass swap can reduce color without immediately breaking the package
+- groups that are optically important but already geometrically recognizable
+
+### Low-efficiency glass candidates
+
+These are still valid, but should usually be changed later or in a comparison branch:
+
+- very weak elements whose glass change barely changes residual color
+- elements whose material is serving mostly package, thermal, or manufacturability roles
+- elements whose glass swap mostly shifts first-order power or package length without helping the real miss
+
+Use glass changes when:
 
 - geometry is physically valid
 - residual color remains high
 - geometry-only pushes are starting to damage package or first-order stability
 
-Change a small candidate set first, then rebalance geometry with `ERR CDV`.
+### Opening policy for glass variables
+
+- start with a small candidate set, not a blanket glass release
+- prefer changing the glasses that carry the clearest residual color burden first
+- after a successful small-set glass move, compare it against a slightly broader glass set if the system remains physically stable
+- keep `ERR CDV` during the geometry rebalance after a glass change
+- do not jump straight from glass selection into `MTF`
+
+### What to compare after a glass change
+
+Always check:
+
+- whether color actually improved
+- whether `EFL`, package length, real gaps, and stow length stayed valid
+- whether the system now needs a new geometry rebalance
+- whether the glass move reduced the burden on a few overworked strong surfaces

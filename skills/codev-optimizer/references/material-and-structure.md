@@ -23,6 +23,15 @@ Typical order:
 
 Treat glass exploration as a structure-level move, not a final polish.
 
+### Practical glass-choice rules
+
+- First identify which real elements or groups are still carrying the unmet color burden.
+- Prefer changing a small, meaningful glass set instead of opening every material at once.
+- A glass variable is valid only if it belongs to a true transmissive element whose material is still part of the design space.
+- Do not spend glass freedom on dummy surfaces, air spaces, or elements that the user has already fixed for supply, molding, thermal, or patent reasons.
+- If a glass change mostly hurts `EFL`, package, or real gaps but barely improves color, that candidate is probably low-efficiency for the current stage.
+- After any glass change, geometry must usually be rebalanced again with `ERR CDV` before judging the move.
+
 ## 3. Non-Spherical Surfaces
 
 Choose non-spherical surfaces only after the spherical structure is basically sound.
