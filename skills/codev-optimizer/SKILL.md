@@ -45,6 +45,7 @@ Use this skill to run CODE V optimization with a physical-first, staged workflow
 - Read [references/material-and-structure.md](references/material-and-structure.md) when geometry stalls and you need to change glass, add non-spherical power, split or merge groups, or consider floating groups.
 - Read [references/diagnostics.md](references/diagnostics.md) when a run misses targets and you need to diagnose whether the blocker is settings, structure, color, pupil, or architecture.
 - Read [references/ui-session.md](references/ui-session.md) when the user wants a visible CODE V session, interactive progress, or stage-by-stage GUI execution.
+  - Use that same diagnostics reference to decide whether a stage result becomes the new base, stays only as a diagnostic branch, or must be rolled back.
 
 ## Workspace Conventions
 
